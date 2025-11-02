@@ -1,0 +1,102 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Usar Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Instalar dependências
+      run: npm ci
+    
+    - name: Executar linter
+      run: npm run lint --if-present
+    
+    - name: Executar testes unitários
+      run: npm run test
+    
+    - name: Gerar cobertura de testes
+      run: npm run test:coverage --if-present
+    
+    - name: Upload cobertura para Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        files: ./coverage/coverage-final.json
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Usar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    
+    - name: Instalar dependências
+      run: npm ci
+    
+    - name: Build do projeto
+      run: npm run build
+    
+    - name: Upload artefato de build
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifact
+        path: dist/
+        retention-days: 5
+
+  security:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Executar verificação de segurança npm
+      run: npm audit --audit-level=moderate
+      continue-on-error: true
+    
+    - name: Verificar dependências desatualizadas
+      run: npm outdated
+      continue-on-error: true
+
+  code-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Usar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    
+    - name: Instalar dependências
+      run: npm ci
+    
+    - name: Verificar qualidade de código
+      run: npm run lint --if-present

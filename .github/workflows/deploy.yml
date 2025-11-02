@@ -1,0 +1,59 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+  workflow_run:
+    workflows: ["CI/CD Pipeline"]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.workflow_run.conclusion == 'success'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Usar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    
+    - name: Instalar dependências
+      run: npm ci
+    
+    - name: Build do projeto
+      run: npm run build
+    
+    - name: Deploy para Vercel (opcional)
+      uses: vercel/action@master
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+      if: ${{ secrets.VERCEL_TOKEN != '' }}
+      continue-on-error: true
+    
+    - name: Deploy para Netlify (opcional)
+      uses: nwtgck/actions-netlify@v2
+      with:
+        publish-dir: './dist'
+        production-branch: main
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "Deploy from GitHub Actions"
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      if: ${{ secrets.NETLIFY_AUTH_TOKEN != '' }}
+      continue-on-error: true
+    
+    - name: Notificar sucesso
+      if: success()
+      run: echo "Deploy realizado com sucesso!"
+    
+    - name: Notificar falha
+      if: failure()
+      run: echo "Deploy falhou!"
