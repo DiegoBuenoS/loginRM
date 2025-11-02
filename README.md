@@ -1,321 +1,357 @@
-# RM Login - Sistema de Autenticação TOTVS Identity
+# 🔐 RM Login
 
-[![React](https://img.shields.io/badge/React-18.0+-blue.svg)](https://reactjs.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0+-38B2AC.svg)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+Sistema de autenticação e dashboard para **TOTVS RM** desenvolvido com React, Vite e Tailwind CSS.
 
-Sistema moderno de autenticação integrado com a API do TOTVS Identity. Desenvolvido com React, Tailwind CSS e shadcn/ui, oferecendo uma experiência de login segura e intuitiva.
+![React](https://img.shields.io/badge/React-18.x-blue)
+![Vite](https://img.shields.io/badge/Vite-5.x-purple)
+![Tailwind](https://img.shields.io/badge/Tailwind-3.x-cyan)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-## 🌟 Características
+---
 
-- **Autenticação Segura**: Integração com TOTVS Identity usando OAuth2
-- **Interface Moderna**: Design responsivo com Tailwind CSS e shadcn/ui
-- **Validação de Formulário**: Validação em tempo real com mensagens de erro claras
-- **Gerenciamento de Tokens**: Armazenamento seguro de tokens de autenticação
-- **Configuração Centralizada**: Arquivo de configuração para gerenciar endpoints da API
-- **Escalável**: Arquitetura preparada para futuras funcionalidades como dashboard
-- **Documentação em PT-BR**: Código e documentação totalmente em português
+## 📋 Índice
 
-## 🚀 Início Rápido
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Funcionalidades](#funcionalidades)
+- [Tecnologias](#tecnologias)
+- [Pré-requisitos](#pré-requisitos)
+- [Instalação](#instalação)
+- [Configuração](#configuração)
+- [Uso](#uso)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Capturas de Tela](#capturas-de-tela)
+- [Roadmap](#roadmap)
+- [Contribuindo](#contribuindo)
+- [Licença](#licença)
+- [Contato](#contato)
 
-### Pré-requisitos
+---
 
-- Node.js 16.0 ou superior
-- npm ou yarn
+## 🎯 Sobre o Projeto
 
-### Instalação
+O **RM Login** é uma aplicação web moderna que fornece autenticação segura e um dashboard interativo para o sistema **TOTVS RM**. Desenvolvido com as mais recentes tecnologias front-end, oferece uma experiência de usuário fluida e responsiva.
 
-1. Clone o repositório:
+### Por que este projeto?
+
+- ✅ Interface moderna e intuitiva
+- ✅ Autenticação segura com TOTVS RM API
+- ✅ Dashboard com visualização de dados em tempo real
+- ✅ Totalmente responsivo (mobile, tablet, desktop)
+- ✅ Código limpo e bem documentado
+- ✅ Pronto para produção
+
+---
+
+## ✨ Funcionalidades
+
+### Implementadas
+
+- ✅ **Autenticação**
+  - Login com credenciais TOTVS RM
+  - Validação de formulário em tempo real
+  - Mensagens de erro persistentes
+  - Opção "Lembrar-me"
+  - Redirecionamento automático após login
+
+- ✅ **Dashboard**
+  - Sidebar navegável e retrátil
+  - Header com informações do usuário
+  - Cards de estatísticas (Vendas, Pedidos, NFs, Clientes)
+  - Tabela de vendas recentes
+  - Gráfico de produtos mais vendidos
+  - Design responsivo
+
+- ✅ **Navegação**
+  - Rotas protegidas por autenticação
+  - Redirecionamento automático
+  - Navegação entre páginas
+
+### Em Desenvolvimento
+
+- 🚧 Módulo de Pedidos
+- 🚧 Módulo de Notas Fiscais
+- 🚧 Módulo de Relatórios
+- 🚧 Configurações de usuário
+- 🚧 Gráficos interativos
+- 🚧 Exportação de dados
+- 🚧 Notificações em tempo real
+
+---
+
+## 🚀 Tecnologias
+
+Este projeto foi desenvolvido com as seguintes tecnologias:
+
+### Core
+
+- [React](https://reactjs.org/) - Biblioteca JavaScript para interfaces
+- [Vite](https://vitejs.dev/) - Build tool e dev server
+- [React Router](https://reactrouter.com/) - Roteamento
+
+### Estilização
+
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utility-first
+- [Lucide React](https://lucide.dev/) - Ícones modernos
+
+### HTTP & API
+
+- [Axios](https://axios-http.com/) - Cliente HTTP
+
+### Qualidade de Código
+
+- [ESLint](https://eslint.org/) - Linter JavaScript
+- [Prettier](https://prettier.io/) - Formatador de código
+- [Vitest](https://vitest.dev/) - Framework de testes
+
+---
+
+## 📦 Pré-requisitos
+
+Antes de começar, você precisa ter instalado:
+
+- [Node.js](https://nodejs.org/) (versão 16 ou superior)
+- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
+- [Git](https://git-scm.com/)
+
+### Verificar instalação:
 
 ```bash
-git clone https://github.com/seu-usuario/rm_login.git
-cd rm_login
+node --version  # v16.x ou superior
+npm --version   # 8.x ou superior
+git --version   # 2.x ou superior
 ```
 
-2. Instale as dependências:
+---
+
+## 🔧 Instalação
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/DiegoBuenoS/loginRM.git
+cd loginRM
+```
+
+### 2. Instale as dependências
 
 ```bash
 npm install
 ```
 
-3. Configure as variáveis de ambiente:
+### 3. Configure as variáveis de ambiente
 
 ```bash
 cp .env.example .env.local
 ```
 
-4. Edite o arquivo `.env.local` com suas credenciais do TOTVS Identity:
+Edite o arquivo `.env.local` com suas configurações:
 
 ```env
-REACT_APP_API_BASE_URL=https://identity.totvs.com.br
-REACT_APP_OAUTH2_CLIENT_ID=seu_client_id
-REACT_APP_OAUTH2_CLIENT_SECRET=seu_client_secret
-REACT_APP_REDIRECT_URI=http://localhost:5173/callback
+# URL da API TOTVS RM
+VITE_API_BASE_URL=http://seu-servidor:8051
+
+# Contexto (código da empresa/coligada)
+VITE_CONTEXT=1
+
+# Ambiente
+MODE=development
 ```
 
-5. Inicie o servidor de desenvolvimento:
+### 4. Inicie o servidor de desenvolvimento
 
 ```bash
 npm run dev
 ```
 
-A aplicação estará disponível em `http://localhost:5173`
+Acesse: http://localhost:5173
 
-## 📁 Estrutura do Projeto
+---
 
-```
-rm_login/
-├── src/
-│   ├── components/
-│   │   └── ui/
-│   │       ├── Button.jsx        # Componente de botão reutilizável
-│   │       └── Input.jsx         # Componente de input reutilizável
-│   ├── config/
-│   │   └── api.config.js         # Configuração centralizada de endpoints
-│   ├── pages/
-│   │   └── LoginPage.jsx         # Página principal de login
-│   ├── services/
-│   │   └── api.service.js        # Serviço de requisições HTTP
-│   ├── utils/
-│   │   └── cn.js                 # Utilitário para concatenar classes CSS
-│   ├── App.jsx                   # Componente raiz da aplicação
-│   ├── index.css                 # Estilos globais com Tailwind CSS
-│   └── main.jsx                  # Ponto de entrada da aplicação
-├── .env.example                  # Exemplo de variáveis de ambiente
-├── .env.local                    # Variáveis de ambiente locais (não commitar)
-├── .gitignore                    # Arquivos ignorados pelo Git
-├── package.json                  # Dependências do projeto
-├── tailwind.config.js            # Configuração do Tailwind CSS
-├── postcss.config.js             # Configuração do PostCSS
-├── vite.config.js                # Configuração do Vite
-└── README.md                     # Este arquivo
-```
+## ⚙️ Configuração
 
-## 🔧 Configuração da API
+### Variáveis de Ambiente
 
-O arquivo `src/config/api.config.js` centraliza todas as configurações de endpoints da API. Modifique conforme necessário:
+| Variável | Descrição | Padrão | Obrigatório |
+|----------|-----------|--------|-------------|
+| `VITE_API_BASE_URL` | URL base da API TOTVS RM | `http://localhost:8051` | ✅ |
+| `VITE_CONTEXT` | Contexto/Coligada | `1` | ✅ |
+| `MODE` | Ambiente de execução | `development` | ❌ |
 
-```javascript
-const API_CONFIG = {
-  BASE_URL: 'https://identity.totvs.com.br',
-  AUTH: {
-    LOGIN: '/api/oauth2/token',
-    LOGOUT: '/api/oauth2/revoke',
-    USER_INFO: '/api/oauth2/userinfo',
-  },
-  OAUTH2: {
-    CLIENT_ID: 'seu_client_id',
-    GRANT_TYPE: 'password',
-    SCOPE: 'openid profile email',
-  },
-};
-```
+### Endpoints da API
 
-## 📚 Documentação da API
+O sistema utiliza os seguintes endpoints do TOTVS RM:
 
-### Serviço de Autenticação (`src/services/api.service.js`)
+- `GET /api/framework/v1/users/{username}` - Autenticação e dados do usuário
 
-#### `loginUser(username, password)`
+Para mais informações, consulte a [documentação oficial do TOTVS RM](https://tdn.totvs.com/pages/releaseview.action?pageId=419548959).
 
-Realiza login com credenciais de usuário.
+---
 
-```javascript
-import { loginUser } from './services/api.service';
+## 💻 Uso
 
-try {
-  const response = await loginUser('usuario@email.com', 'senha123');
-  console.log('Token de acesso:', response.access_token);
-} catch (error) {
-  console.error('Erro ao fazer login:', error);
-}
-```
-
-#### `logoutUser()`
-
-Realiza logout do usuário.
-
-```javascript
-import { logoutUser } from './services/api.service';
-
-try {
-  await logoutUser();
-  console.log('Logout realizado com sucesso');
-} catch (error) {
-  console.error('Erro ao fazer logout:', error);
-}
-```
-
-#### `getUserInfo()`
-
-Obtém informações do usuário autenticado.
-
-```javascript
-import { getUserInfo } from './services/api.service';
-
-try {
-  const userInfo = await getUserInfo();
-  console.log('Informações do usuário:', userInfo);
-} catch (error) {
-  console.error('Erro ao obter informações:', error);
-}
-```
-
-#### `validateToken(token)`
-
-Valida um token de acesso.
-
-```javascript
-import { validateToken } from './services/api.service';
-
-try {
-  const result = await validateToken('seu_token_aqui');
-  console.log('Token válido:', result.active);
-} catch (error) {
-  console.error('Erro ao validar token:', error);
-}
-```
-
-#### `refreshAccessToken()`
-
-Renova o token de acesso usando refresh token.
-
-```javascript
-import { refreshAccessToken } from './services/api.service';
-
-try {
-  const newToken = await refreshAccessToken();
-  console.log('Novo token:', newToken.access_token);
-} catch (error) {
-  console.error('Erro ao renovar token:', error);
-}
-```
-
-## 🎎 Componentes UI
-
-### Button
-
-Botão reutilizável com múltiplas variantes.
-
-```jsx
-import Button from './components/ui/Button';
-
-<Button variant="primary" size="lg" onClick={handleClick}>
-  Clique aqui
-</Button>
-```
-
-**Variantes**: `primary`, `secondary`, `outline`, `ghost`, `danger`
-**Tamanhos**: `sm`, `md`, `lg`, `xl`
-
-### Input
-
-Campo de entrada com validação integrada.
-
-```jsx
-import Input from './components/ui/Input';
-import { Mail } from 'lucide-react';
-
-<Input
-  type="email"
-  placeholder="seu@email.com"
-  icon={Mail}
-  error={emailError}
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-/>
-```
-
-## 🔐 Segurança
-
-- **Tokens Armazenados**: Tokens de acesso são armazenados no `localStorage`
-- **Interceptadores**: Requisições HTTP incluem automaticamente o token de autorização
-- **Tratamento de Erros**: Erros 401 (não autorizado) disparam logout automático
-- **Variáveis de Ambiente**: Credenciais sensíveis são gerenciadas via `.env.local`
-
-## 📦 Dependências Principais
-
-- **React 18**: Framework JavaScript para construir interfaces
-- **Vite**: Build tool moderno e rápido
-- **Tailwind CSS**: Framework CSS utilitário
-- **Axios**: Cliente HTTP para requisições
-- **Lucide React**: Ícones SVG de alta qualidade
-- **class-variance-authority**: Gerenciamento de variantes de componentes
-
-## 🚀 Scripts Disponíveis
+### Desenvolvimento
 
 ```bash
 # Iniciar servidor de desenvolvimento
 npm run dev
 
-# Fazer build para produção
-npm run build
+# Executar testes
+npm run test
 
-# Pré-visualizar build de produção
-npm run preview
+# Executar testes com interface
+npm run test:ui
 
-# Lint do código (se configurado)
+# Verificar cobertura de testes
+npm run test:coverage
+
+# Verificar código (lint)
 npm run lint
+
+# Corrigir problemas de lint
+npm run lint:fix
+
+# Formatar código
+npm run format
 ```
 
-## 🌐 Variáveis de Ambiente
+### Build para Produção
 
-| Variável | Descrição | Exemplo |
-|----------|-----------|----------|
-| `REACT_APP_API_BASE_URL` | URL base da API TOTVS Identity | `https://identity.totvs.com.br` |
-| `REACT_APP_OAUTH2_CLIENT_ID` | Client ID da aplicação | `seu_client_id` |
-| `REACT_APP_OAUTH2_CLIENT_SECRET` | Client Secret da aplicação | `seu_client_secret` |
-| `REACT_APP_REDIRECT_URI` | URL de redirecionamento após login | `http://localhost:5173/callback` |
-| `NODE_ENV` | Ambiente de execução | `development` ou `production` |
+```bash
+# Criar build otimizado
+npm run build
 
-## 🔄 Fluxo de Autenticação
-
-1. Usuário insere email e senha na tela de login
-2. Validação de formulário em tempo real
-3. Requisição POST para `/api/oauth2/token` com credenciais
-4. API retorna `access_token` e `refresh_token`
-5. Tokens são armazenados no `localStorage`
-6. Usuário é redirecionado para o dashboard (futuro)
-7. Requisições subsequentes incluem o token no header `Authorization`
-
-## 📝 Próximas Funcionalidades
-
-- [ ] Dashboard com painel de controle
-- [ ] Gerenciamento de perfil de usuário
-- [ ] Autenticação de dois fatores (2FA)
-- [ ] Recuperação de senha
-- [ ] Integração com mais provedores OAuth2
-- [ ] Testes unitários e E2E
-- [ ] Documentação de API com Swagger
-
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Por favor:
-
-1. Faça um fork do repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-## 👥 Autores
-
-- **RM Login Team** - Desenvolvimento inicial
-
-## 💬 Suporte
-
-Para suporte, abra uma issue no repositório ou entre em contato através do email de suporte.
-
-## 🙏 Agradecimentos
-
-- TOTVS pela API de Identity
-- Comunidade React
-- Tailwind CSS
-- shadcn/ui
+# Visualizar build localmente
+npm run preview
+```
 
 ---
 
-**Desenvolvido com ❤️ para a comunidade open source**
+## 📁 Estrutura do Projeto
+
+```
+loginRM/
+├── public/              # Arquivos estáticos
+├── src/
+│   ├── components/      # Componentes React
+│   │   ├── ui/         # Componentes UI reutilizáveis
+│   │   │   ├── Button.jsx
+│   │   │   └── Input.jsx
+│   │   ├── Header.jsx  # Cabeçalho do dashboard
+│   │   └── Sidebar.jsx # Menu lateral
+│   ├── pages/          # Páginas da aplicação
+│   │   ├── LoginPage.jsx
+│   │   └── DashboardPage.jsx
+│   ├── services/       # Serviços e APIs
+│   │   └── api.service.js
+│   ├── config/         # Configurações
+│   │   └── api.config.js
+│   ├── utils/          # Utilitários
+│   │   └── cn.js
+│   ├── App.jsx         # Componente raiz
+│   ├── main.jsx        # Ponto de entrada
+│   └── index.css       # Estilos globais
+├── .env.example        # Exemplo de variáveis de ambiente
+├── .gitignore          # Arquivos ignorados pelo Git
+├── package.json        # Dependências e scripts
+├── vite.config.js      # Configuração do Vite
+├── tailwind.config.js  # Configuração do Tailwind
+└── README.md           # Este arquivo
+```
+
+---
+
+## 📸 Capturas de Tela
+
+### Tela de Login
+
+![Login](https://via.placeholder.com/800x500?text=Tela+de+Login)
+
+*Tela de autenticação com validação em tempo real*
+
+### Dashboard
+
+![Dashboard](https://via.placeholder.com/800x500?text=Dashboard)
+
+*Dashboard com estatísticas e gráficos*
+
+### Sidebar
+
+![Sidebar](https://via.placeholder.com/800x500?text=Sidebar)
+
+*Menu lateral navegável e retrátil*
+
+---
+
+## 🗺️ Roadmap
+
+### Versão 1.0 (Atual)
+
+- [x] Sistema de autenticação
+- [x] Dashboard básico
+- [x] Sidebar navegável
+- [x] Design responsivo
+
+### Versão 1.1 (Próxima)
+
+- [ ] Módulo de Pedidos completo
+- [ ] Módulo de Notas Fiscais
+- [ ] Filtros e busca avançada
+- [ ] Exportação de dados (Excel/PDF)
+
+### Versão 2.0 (Futuro)
+
+- [ ] Gráficos interativos (Chart.js)
+- [ ] Notificações em tempo real
+- [ ] Modo escuro
+- [ ] Suporte a múltiplos idiomas
+- [ ] Autenticação de dois fatores
+
+---
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Siga estes passos:
+
+1. Faça um Fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/MinhaFeature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona MinhaFeature'`)
+4. Push para a branch (`git push origin feature/MinhaFeature`)
+5. Abra um Pull Request
+
+### Diretrizes
+
+- Siga o padrão de código existente
+- Escreva testes para novas funcionalidades
+- Atualize a documentação quando necessário
+- Use commits semânticos (feat, fix, docs, etc.)
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## 📞 Contato
+
+**Diego Bueno**
+
+- GitHub: [@DiegoBuenoS](https://github.com/DiegoBuenoS)
+- LinkedIn: [Diego Bueno](https://linkedin.com/in/seu-perfil)
+- Email: seu.email@exemplo.com
+
+**Link do Projeto:** https://github.com/DiegoBuenoS/loginRM
+
+---
+
+## 🙏 Agradecimentos
+
+- [TOTVS](https://www.totvs.com/) - Pela API do TOTVS RM
+- [React](https://reactjs.org/) - Framework incrível
+- [Tailwind CSS](https://tailwindcss.com/) - Estilização moderna
+- [Lucide](https://lucide.dev/) - Ícones bonitos
+
+---
+
+**Desenvolvido com ❤️ por Diego Bueno**
